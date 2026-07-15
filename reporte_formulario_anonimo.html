@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reporte ciudadano anónimo — Propuesta de subpágina</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:#f4f4f2;color:#1a1a1a;padding:1rem}
+.pg{max-width:860px;margin:0 auto;padding:0 0 3rem}
+.hero{background:#0F6E56;padding:2.5rem 2rem 2rem;border-radius:0 0 12px 12px;margin-bottom:2rem}
+.hero h1{font-size:26px;font-weight:500;color:#E1F5EE;margin-bottom:.5rem;line-height:1.3}
+.back{display:inline-block;font-size:12px;color:#9FE1CB;text-decoration:none;margin-bottom:1rem}
+.back:hover{color:#E1F5EE}
+.hero p{font-size:14px;color:#9FE1CB;line-height:1.6;max-width:560px}
+.wrap{padding:0 1rem}
+.sec{margin-bottom:2rem;position:relative}
+.sec-lbl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#666;margin-bottom:.75rem}
+.map-card{border:1px solid #ddd;border-radius:12px;overflow:hidden;background:#fff}
+.map-foot{padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #ddd;gap:1rem;flex-wrap:wrap}
+.btn-grp{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;font-size:13px;border-radius:8px;border:1px solid #ccc;background:#fff;color:#1a1a1a;cursor:pointer}
+.btn-p{background:#0F6E56;color:#E1F5EE;border-color:#0F6E56}
+.docs{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.doc{border:1px solid #ddd;border-radius:12px;padding:1rem;background:#fff;display:flex;flex-direction:column;gap:8px}
+.doc-t{font-size:13px;font-weight:500;line-height:1.4}
+.doc-m{font-size:11px;color:#666}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;background:#E1F5EE;color:#04342C;margin-top:auto;align-self:flex-start}
+.badge.prox{background:#FAEEDA;color:#633806}
+.den-wrap{border:1px solid #5DCAA5;border-radius:12px;overflow:hidden;background:#fff}
+.den-head{background:#0F6E56;padding:1.25rem 1.5rem}
+.den-title{font-size:17px;font-weight:500;color:#E1F5EE;margin-bottom:3px}
+.den-sub{font-size:13px;color:#9FE1CB;line-height:1.5}
+.flujo{padding:1.25rem 1.5rem;border-bottom:1px solid #ddd}
+.flujo-lbl{font-size:11px;font-weight:500;color:#666;margin-bottom:1rem;text-transform:uppercase;letter-spacing:.08em}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+.step{border:1px solid #ddd;border-radius:8px;padding:.75rem;background:#f9f9f7}
+.step-n{width:22px;height:22px;border-radius:50%;background:#E1F5EE;color:#0F6E56;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.step-t{font-size:12px;line-height:1.5}
+.step-d{margin-top:6px;font-size:11px;color:#666}
+.dest-row{padding:1rem 1.5rem;border-bottom:1px solid #ddd;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.dest-lbl{font-size:12px;color:#666;margin-right:4px}
+.dest-b{display:inline-flex;align-items:center;gap:5px;font-size:12px;padding:4px 10px;border-radius:99px;border:1px solid #5DCAA5;background:#E1F5EE;color:#04342C}
+.dest-b.cond{border-color:#ddd;background:#f4f4f2;color:#555}
+.form-sec{padding:1.25rem 1.5rem}
+.form-title{font-size:15px;font-weight:500;margin-bottom:1.25rem}
+.form-grid{display:flex;flex-direction:column;gap:1rem}
+.fg{display:flex;flex-direction:column;gap:5px}
+.flbl{font-size:13px;color:#555}
+.req{color:#A32D2D;font-size:11px}
+.opt{font-size:10px;background:#f4f4f2;color:#888;padding:1px 6px;border-radius:99px;border:1px solid #ddd}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.f2{grid-template-columns:1fr}}
+input[type=text],input[type=date],textarea{width:100%;padding:8px 12px;border:1px solid #ccc;border-radius:8px;font-size:13px;font-family:inherit;background:#fff}
+.chks{display:flex;flex-direction:column;gap:6px}
+.chk{display:flex;align-items:center;gap:8px;font-size:13px;padding:6px 10px;border-radius:8px;border:1px solid #ddd;background:#fff;justify-content:space-between}
+.chk .chk-l{display:flex;align-items:center;gap:8px}
+.inst{font-size:10px;padding:2px 8px;border-radius:99px;background:#EEEDFE;color:#3C3489;white-space:nowrap}
+.inst.fed{background:#E6F1FB;color:#0C447C}
+.inst.agua{background:#E1F5EE;color:#04342C}
+.ruta-hint{font-size:11px;color:#666;line-height:1.5;margin-top:4px}
+.urg{display:flex;gap:8px;flex-wrap:wrap}
+.urg-b{padding:6px 14px;border-radius:8px;border:1px solid #ddd;background:#fff;font-size:13px;cursor:pointer}
+.urg-b.alta{border-color:#A32D2D;background:#FCEBEB;color:#A32D2D}
+.upload{border:1.5px dashed #0F6E56;border-radius:8px;padding:1.5rem;text-align:center;color:#0F6E56;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:6px;background:#f7fbf9}
+.anon-note{background:#E1F5EE;border-radius:8px;padding:.75rem 1rem;font-size:12px;color:#04342C;border:1px solid #5DCAA5;line-height:1.6}
+.form-foot{padding:1rem 1.5rem;border-top:1px solid #ddd;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.priv{font-size:12px;color:#666}
+.nota-prop{background:#fff;border:1px solid #ddd;border-radius:8px;padding:1rem 1.25rem;font-size:12px;color:#666;margin-bottom:1.5rem;line-height:1.6}
+.folio-box{background:#fff;border:1px solid #ddd;border-radius:12px;padding:1rem 1.25rem;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.folio-box input{flex:1;min-width:200px}
+.alt-wa{background:#fff;border:1px solid #ddd;border-radius:12px;padding:1rem 1.25rem;font-size:13px;line-height:1.6;color:#444;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+
+.cbar{position:sticky;top:0;z-index:50;background:#1a1a1a;color:#fff;border-radius:10px;padding:.6rem 1rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:1.5rem}
+.cbar span{font-size:12px}
+.cbar .cnt{background:#0F6E56;border-radius:99px;padding:2px 10px;font-size:12px;font-weight:500}
+.cbar button{font-size:12px;padding:5px 12px;border-radius:8px;border:1px solid #555;background:#2c2c2a;color:#fff;cursor:pointer}
+.cbar button.exp{background:#0F6E56;border-color:#0F6E56}
+.cbtn{position:absolute;top:-4px;right:0;font-size:11px;padding:4px 10px;border-radius:99px;border:1px solid #5DCAA5;background:#E1F5EE;color:#085041;cursor:pointer;z-index:5}
+.cbox{margin-top:.75rem;border:1px solid #5DCAA5;border-radius:8px;background:#fff;padding:.75rem;display:none;flex-direction:column;gap:8px}
+.cbox.open{display:flex}
+.cbox textarea{min-height:60px}
+.cbox-row{display:flex;gap:8px;justify-content:flex-end}
+.clist{margin-top:.6rem;display:flex;flex-direction:column;gap:6px}
+.citem{background:#FBF9F3;border:1px solid #e8e2d4;border-left:3px solid #0F6E56;border-radius:0;padding:.5rem .75rem;font-size:12px;line-height:1.55;color:#333;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.citem .who{color:#0F6E56;font-weight:500}
+.citem .del{border:none;background:none;color:#A32D2D;cursor:pointer;font-size:12px;padding:0 2px}
+.foot{padding:1rem 1.5rem;font-size:12px;color:#666;text-align:center}
+</style>
+</head>
+<body>
+<div class="pg">
+
+  <div class="nota-prop">
+    <strong>Nota:</strong> Propuesta de diseño para la subpágina "Reporte ciudadano" de labrural.org, para revisión en la reunión del 17 de julio de 2026. Incluye la consulta de zonificación, la descarga de documentos del PMDU y el formulario de reporte anónimo con alertas automáticas. Use el botón "Comentar" de cada sección para dejar sus observaciones: se registran automáticamente para la mesa de trabajo.
+  </div>
+
+
+  <div class="hero">
+    <a class="back" href="index.html">← Volver a la página principal</a>
+    <h1>Reporte ciudadano</h1>
+    <p>Consulta la zonificación del territorio, descarga los documentos del plan de desarrollo urbano y reporta cambios irregulares de uso de suelo de forma anónima.</p>
+  </div>
+
+  <div class="wrap">
+
+    <div class="sec" data-sec="Mapa de zonificación">
+      <p class="sec-lbl">Zonificación secundaria — PMDU Arroyo Seco</p>
+      <div class="map-card">
+        <div style="width:100%;height:260px;background:#e8f4ee;overflow:hidden">
+          <svg width="100%" height="260" viewBox="0 0 860 260" xmlns="http://www.w3.org/2000/svg">
+            <rect width="860" height="260" fill="#d4ede3"/>
+            <polygon points="120,20 740,15 790,80 750,200 680,240 200,245 60,180 80,90" fill="#b8dfc9" stroke="#8fbfa8" stroke-width="0.5"/>
+            <polygon points="320,80 440,75 460,120 420,160 330,155 300,115" fill="#5DCAA5" opacity="0.6"/>
+            <polygon points="440,75 540,70 560,100 540,140 450,145 420,110" fill="#1D9E75" opacity="0.5"/>
+            <polygon points="200,100 290,95 310,130 280,160 190,158 170,130" fill="#EAF3DE" stroke="#97C459" stroke-width="0.5"/>
+            <polygon points="560,90 640,85 660,130 630,155 550,150 530,115" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+            <polygon points="300,155 410,150 430,195 390,220 280,218 260,185" fill="#9FE1CB" opacity="0.4"/>
+            <polygon points="200,158 290,155 310,200 260,220 185,210 170,175" fill="#FAC775" opacity="0.5"/>
+            <polygon points="640,130 710,125 730,165 700,185 630,182 615,155" fill="#F5C4B3" opacity="0.5"/>
+            <path d="M280,200 Q360,175 430,190 Q500,205 560,185 Q620,165 680,175" stroke="#185FA5" stroke-width="2" fill="none" opacity="0.7"/>
+            <circle cx="385" cy="118" r="8" fill="#0F6E56" opacity="0.9"/>
+            <text x="396" y="122" font-size="10" fill="#04342C" font-family="sans-serif">Concá</text>
+            <rect x="10" y="10" width="165" height="110" rx="4" fill="white" fill-opacity="0.9" stroke="#c5e0d4" stroke-width="0.5"/>
+            <text x="20" y="28" font-size="10" font-weight="500" fill="#085041" font-family="sans-serif">Zonificación secundaria</text>
+            <rect x="20" y="36" width="10" height="10" rx="2" fill="#5DCAA5" opacity="0.7"/>
+            <text x="34" y="45" font-size="9" fill="#444" font-family="sans-serif">Habitacional rural</text>
+            <rect x="20" y="52" width="10" height="10" rx="2" fill="#1D9E75" opacity="0.6"/>
+            <text x="34" y="61" font-size="9" fill="#444" font-family="sans-serif">Habitacional mixto</text>
+            <rect x="20" y="68" width="10" height="10" rx="2" fill="#EAF3DE" stroke="#97C459" stroke-width="0.5"/>
+            <text x="34" y="77" font-size="9" fill="#444" font-family="sans-serif">No urbanizable</text>
+            <rect x="20" y="84" width="10" height="10" rx="2" fill="#FAC775" opacity="0.6"/>
+            <text x="34" y="93" font-size="9" fill="#444" font-family="sans-serif">Zona de amortiguamiento</text>
+            <rect x="20" y="100" width="10" height="10" rx="2" fill="#F5C4B3" opacity="0.6"/>
+            <text x="34" y="109" font-size="9" fill="#444" font-family="sans-serif">Ecoturístico</text>
+          </svg>
+        </div>
+        <div class="map-foot">
+          <span style="font-size:12px;color:#666">Mapa ilustrativo — versión interactiva con capa KMZ en desarrollo</span>
+          <div class="btn-grp">
+            <button class="btn">Ver en Google Earth</button>
+            <button class="btn btn-p">Descargar KMZ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" data-sec="Documentos del PMDU">
+      <p class="sec-lbl">Documentos del plan de desarrollo urbano</p>
+      <div class="docs">
+        <div class="doc"><p class="doc-t">PMDU Arroyo Seco</p><p class="doc-m">Programa Municipal completo · PDF · 67 pág.</p><span class="badge">Disponible</span></div>
+        <div class="doc"><p class="doc-t">Memoria técnica</p><p class="doc-m">Diagnóstico territorial · PDF</p><span class="badge">Disponible</span></div>
+        <div class="doc"><p class="doc-t">Plano de zonificación secundaria</p><p class="doc-m">Formato KMZ · Google Earth</p><span class="badge">Disponible</span></div>
+        <div class="doc"><p class="doc-t">Planos técnicos oficiales</p><p class="doc-m">Planos en formato DWG/PDF</p><span class="badge prox">Próximamente</span></div>
+      </div>
+    </div>
+
+    <div class="sec" data-sec="Flujo del reporte">
+      <p class="sec-lbl">Reporte ciudadano — cambios irregulares de uso de suelo</p>
+      <div class="den-wrap">
+        <div class="den-head">
+          <p class="den-title">Reporte ciudadano anónimo</p>
+          <p class="den-sub">Tu identidad no es requerida. Cada reporte activa notificaciones automáticas a las autoridades responsables. El valle es de quien lo cuida.</p>
+        </div>
+
+        <div class="flujo">
+          <p class="flujo-lbl">Así funciona tu reporte</p>
+          <div class="steps">
+            <div class="step"><div class="step-n">1</div><p class="step-t">Llenas el formulario con ubicación, descripción y al menos dos fotos</p><p class="step-d">Recibes folio y acuse al instante</p></div>
+            <div class="step"><div class="step-n">2</div><p class="step-t">Filtro de competencia: la ventanilla única define a quién corresponde</p><p class="step-d">≤3 días hábiles, criterios escritos</p></div>
+            <div class="step"><div class="step-n">3</div><p class="step-t">Notificación simultánea a Municipio, CONANP y PROFEPA</p><p class="step-d">El correo señala a la instancia que hace la primera revisión</p></div>
+            <div class="step"><div class="step-n">4</div><p class="step-t">Verificación en campo con acta y determinación</p><p class="step-d">≤5 días hábiles; consulta el avance con tu folio</p></div>
+          </div>
+        </div>
+
+        <div class="dest-row">
+          <span class="dest-lbl">Notificación simultánea:</span>
+          <span class="dest-b">Municipio de Arroyo Seco</span>
+          <span class="dest-b">CONANP</span>
+          <span class="dest-b">PROFEPA</span>
+          <span class="dest-lbl" style="margin-left:8px">Según el caso:</span>
+          <span class="dest-b cond">CONAGUA</span>
+          <span class="dest-b cond">SEDESU</span>
+        </div>
+
+        <div class="form-sec" data-sub="form">
+          <p class="form-title">Formulario de reporte</p>
+          <div class="form-grid">
+            <div class="fg"><label class="flbl">Contacto para seguimiento <span class="opt">opcional</span></label><input type="text" placeholder="Correo o teléfono (no se publica ni comparte)"/></div>
+            <div class="f2">
+              <div class="fg"><label class="flbl">Municipio o localidad <span class="req">*</span></label><input type="text" placeholder="Concá, Las Trancas…"/></div>
+              <div class="fg"><label class="flbl">Fecha de observación <span class="req">*</span></label><input type="date"/></div>
+            </div>
+            <div class="fg"><label class="flbl">Dirección o referencias <span class="req">*</span></label><input type="text" placeholder="Calle, número o punto de referencia cercano"/></div>
+            <div class="fg">
+              <label class="flbl">Urgencia <span class="req">*</span></label>
+              <div class="urg">
+                <button class="urg-b alta">Ocurriendo ahora</button>
+                <button class="urg-b">Ocurrió esta semana</button>
+                <button class="urg-b">Proceso de semanas o meses</button>
+              </div>
+            </div>
+            <div class="fg">
+              <label class="flbl">Tipo de irregularidad <span class="req">*</span></label>
+              <div class="chks">
+                <label class="chk"><span class="chk-l"><input type="checkbox"/> Cambio de suelo agrícola a uso habitacional o comercial</span><span class="inst">Municipio</span></label>
+                <label class="chk"><span class="chk-l"><input type="checkbox"/> Urbanización no autorizada (lotificación, apertura de calles)</span><span class="inst">Municipio</span></label>
+                <label class="chk"><span class="chk-l"><input type="checkbox"/> Construcción sin permiso o fuera de norma</span><span class="inst">Municipio</span></label>
+                <label class="chk"><span class="chk-l"><input type="checkbox"/> Cambio a uso turístico o comercial sin autorización</span><span class="inst">Municipio</span></label>
+                <label class="chk"><span class="chk-l"><input type="checkbox"/> Desmonte o extracción de vegetación y materiales pétreos</span><span class="inst fed">CONANP · PROFEPA</span></label>
+                <label class="chk"><span class="chk-l"><input type="checkbox"/> Afectación a acequias, manantiales, ríos o zona federal</span><span class="inst agua">CONAGUA</span></label>
+                <label class="chk"><span class="chk-l"><input type="checkbox"/> Otro (describir abajo)</span><span class="inst" style="background:#f4f4f2;color:#888">Ventanilla única</span></label>
+              </div>
+              <p class="ruta-hint">La etiqueta indica a qué instancia corresponde la primera revisión según los criterios de competencia. El correo de alerta que reciben las autoridades lo señala explícitamente, para que ningún reporte quede sin responsable.</p>
+            </div>
+            <div class="fg"><label class="flbl">Descripción de los hechos <span class="req">*</span></label><textarea rows="4" placeholder="¿Qué se está haciendo? ¿Con qué maquinaria o materiales? ¿Cuántas personas o vehículos? Cualquier detalle ayuda."></textarea></div>
+            <div class="fg"><label class="flbl">Evidencia fotográfica <span class="req">* mínimo 2 fotos</span></label><div class="upload"><span style="font-size:24px">📷</span><span>Arrastra al menos dos fotos o haz clic para subir</span><span style="font-size:11px;color:#0F6E56">De preferencia con fecha y coordenadas (puedes usar una app como Timestamp) · JPG, PNG · máx. 10 MB por archivo</span></div></div>
+            <div class="anon-note">Tu reporte es anónimo. No se recopilan datos personales si no los proporcionas voluntariamente. Al enviar, las autoridades recibirán una notificación automática con la información que escribiste aquí.</div>
+          </div>
+        </div>
+
+        <div class="form-foot">
+          <p class="priv">Mecanismo de reporte ciudadano anónimo · Valle de Concá y municipio de Arroyo Seco</p>
+          <button class="btn btn-p" style="padding:9px 20px;font-size:14px">Enviar reporte</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" data-sec="Consulta de estatus por folio">
+      <p class="sec-lbl">¿Ya enviaste un reporte? Consulta su estatus</p>
+      <div class="folio-box">
+        <input type="text" placeholder="Escribe tu folio, por ejemplo EDVAC-20260717-0042"/>
+        <button class="btn btn-p">Consultar</button>
+      </div>
+    </div>
+
+    <div class="sec" data-sec="Canal alternativo WhatsApp">
+      <p class="sec-lbl">Otro camino para reportar</p>
+      <div class="alt-wa">
+        <span>¿Prefieres mandar tu reporte por WhatsApp, con ubicación y fotos desde el chat? Existe un canal directo — no es anónimo, pero tu número solo lo ve quien administra el canal.</span>
+        <a class="btn" href="reporte_whatsapp.html" style="text-decoration:none">Conocer el canal de WhatsApp</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="foot">Mecanismo de reporte ciudadano · Propuesta para la mesa interinstitucional del 17 de julio de 2026</div>
+</div>
+
+<script>
+(function(){
+  var KEY='edvac_form_comentarios';
+  var mem=[];
+  function load(){try{var r=localStorage.getItem(KEY);return r?JSON.parse(r):[]}catch(e){return mem}}
+  function save(list){try{localStorage.setItem(KEY,JSON.stringify(list))}catch(e){mem=list}}
+  function fmt(d){var x=new Date(d);return x.toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'})}
+
+  var URL_HOJA='https://script.google.com/macros/s/AKfycbzWWkcOjssCDI_tt_PAu3DzfXcsAI2U6jXzm-8uTcas29TAlamFuvwaMNrTLprfxRK8/exec';
+  var PAGINA='Formulario de reporte';
+  var sincronizando=false;
+  function pintaSync(n){var el=document.getElementById('sync');if(!el)return;el.textContent=n?('· por enviar a la hoja: '+n):'· hoja sincronizada';el.style.color=n?'#FAC775':'#9FE1CB'}
+  function sync(){
+    if(!URL_HOJA||sincronizando)return;
+    var all=load();
+    var pend=all.filter(function(c){return !c.env});
+    pintaSync(pend.length);
+    if(!pend.length)return;
+    sincronizando=true;
+    fetch(URL_HOJA,{method:'POST',body:JSON.stringify({comentarios:pend.map(function(c){return {id:c.id||('c'+c.ts),pagina:PAGINA,seccion:c.sec,quien:c.who||'',texto:c.txt,ts:c.ts}})})})
+    .then(function(r){return r.json()})
+    .then(function(j){if(j&&j.ok){var a=load();a.forEach(function(c){c.env=true});save(a);pintaSync(0)}})
+    .catch(function(e){})
+    .finally(function(){sincronizando=false});
+  }
+  setInterval(sync,60000);
+
+
+  var secs=document.querySelectorAll('.sec[data-sec]');
+  secs.forEach(function(sec){
+    var name=sec.getAttribute('data-sec');
+    var btn=document.createElement('button');
+    btn.className='cbtn';btn.textContent='Comentar';
+    var box=document.createElement('div');
+    box.className='cbox';
+    box.innerHTML='<input type="text" placeholder="Quién comenta (opcional): CONANP, PROFEPA, Municipio…"/><textarea placeholder="Acuerdo u observación sobre esta sección"></textarea><div class="cbox-row"><button class="btn" data-a="c">Cancelar</button><button class="btn btn-p" data-a="g">Guardar</button></div>';
+    var list=document.createElement('div');
+    list.className='clist';
+    sec.appendChild(btn);sec.appendChild(box);sec.appendChild(list);
+    btn.addEventListener('click',function(){box.classList.toggle('open');if(box.classList.contains('open'))box.querySelector('textarea').focus()});
+    box.querySelector('[data-a="c"]').addEventListener('click',function(){box.classList.remove('open')});
+    box.querySelector('[data-a="g"]').addEventListener('click',function(){
+      var t=box.querySelector('textarea').value.trim();
+      if(!t)return;
+      var w=box.querySelector('input').value.trim();
+      var all=load();
+      all.push({id:'c'+Date.now()+Math.floor(Math.random()*1000),sec:name,who:w,txt:t,ts:Date.now(),env:false});
+      save(all);
+      sync();
+      box.querySelector('textarea').value='';box.querySelector('input').value='';
+      box.classList.remove('open');
+      render();
+    });
+  });
+
+  function render(){
+    var all=load();
+    secs.forEach(function(sec){
+      var name=sec.getAttribute('data-sec');
+      var list=sec.querySelector('.clist');
+      list.innerHTML='';
+      all.forEach(function(c,i){
+        if(c.sec!==name)return;
+        var d=document.createElement('div');
+        d.className='citem';
+        var left=document.createElement('div');
+        left.innerHTML=(c.who?'<span class="who">'+esc(c.who)+' · </span>':'')+esc(c.txt)+' <span style="color:#999">('+fmt(c.ts)+')</span>';
+        var del=document.createElement('button');
+        del.className='del';del.textContent='✕';del.title='Eliminar comentario';
+        del.addEventListener('click',function(){var a=load();a.splice(i,1);save(a);render()});
+        d.appendChild(left);d.appendChild(del);
+        list.appendChild(d);
+      });
+    });
+  }
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+  render();
+  sync();
+})();
+</script>
+</body>
+</html>

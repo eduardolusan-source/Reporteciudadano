@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reporte ciudadano y ordenamiento territorial — Valle de Concá · Arroyo Seco</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:#f4f4f2;color:#1a1a1a;padding:1rem}
+.pg{max-width:860px;margin:0 auto;padding:0 0 3rem}
+.hero{background:#0F6E56;padding:3rem 2rem 2.5rem;border-radius:0 0 12px 12px;margin-bottom:2rem}
+.hero h1{font-size:28px;font-weight:500;color:#E1F5EE;margin-bottom:.75rem;line-height:1.3;max-width:620px}
+.hero p{font-size:14px;color:#9FE1CB;line-height:1.7;max-width:600px}
+.wrap{padding:0 1rem}
+.sec{margin-bottom:2rem;position:relative}
+.sec-lbl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#666;margin-bottom:.75rem}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:620px){.grid{grid-template-columns:1fr}}
+.tile{border:1px solid #ddd;border-radius:12px;background:#fff;padding:1.5rem 1.5rem 1.25rem;display:flex;flex-direction:column;gap:10px;text-decoration:none;color:#1a1a1a;transition:border-color .15s}
+a.tile:hover{border-color:#0F6E56}
+.tile.wide{grid-column:1/-1}
+@media(max-width:620px){.tile.wide{grid-column:auto}}
+.tile-n{font-size:12px;font-weight:500;color:#0F6E56;background:#E1F5EE;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.tile-t{font-size:16px;font-weight:500;line-height:1.4}
+.tile-d{font-size:13px;color:#555;line-height:1.6;flex:1}
+.tile-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:4px}
+.badge{display:inline-block;font-size:11px;padding:2px 10px;border-radius:99px;background:#E1F5EE;color:#04342C}
+.badge.dev{background:#FAEEDA;color:#633806}
+.go{font-size:13px;color:#0F6E56;font-weight:500}
+.dos{display:flex;gap:8px;flex-wrap:wrap;margin-top:2px}
+.chip{font-size:11px;padding:3px 10px;border-radius:99px;border:1px solid #5DCAA5;background:#f7fbf9;color:#085041}
+.chip.gris{border-color:#ddd;background:#f4f4f2;color:#666}
+.nota-prop{background:#fff;border:1px solid #ddd;border-radius:8px;padding:1rem 1.25rem;font-size:12px;color:#666;margin-bottom:1.5rem;line-height:1.6}
+.ctx{border:1px solid #ddd;border-radius:12px;background:#fff;padding:1.25rem 1.5rem;font-size:13px;line-height:1.7;color:#444}
+.cbar{position:sticky;top:0;z-index:50;background:#1a1a1a;color:#fff;border-radius:10px;padding:.6rem 1rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:1.5rem}
+.cbar span{font-size:12px}
+.cbar .cnt{background:#0F6E56;border-radius:99px;padding:2px 10px;font-size:12px;font-weight:500}
+.cbar button{font-size:12px;padding:5px 12px;border-radius:8px;border:1px solid #555;background:#2c2c2a;color:#fff;cursor:pointer}
+.cbar button.exp{background:#0F6E56;border-color:#0F6E56}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;font-size:13px;border-radius:8px;border:1px solid #ccc;background:#fff;color:#1a1a1a;cursor:pointer}
+.btn-p{background:#0F6E56;color:#E1F5EE;border-color:#0F6E56}
+.cbtn{position:absolute;top:-4px;right:0;font-size:11px;padding:4px 10px;border-radius:99px;border:1px solid #5DCAA5;background:#E1F5EE;color:#085041;cursor:pointer;z-index:5}
+.cbox{margin-top:.75rem;border:1px solid #5DCAA5;border-radius:8px;background:#fff;padding:.75rem;display:none;flex-direction:column;gap:8px}
+.cbox.open{display:flex}
+.cbox textarea{width:100%;border:1px solid #ccc;border-radius:8px;padding:8px 10px;font-size:13px;font-family:inherit;min-height:60px}
+.cbox input{width:100%;border:1px solid #ccc;border-radius:8px;padding:7px 10px;font-size:13px;font-family:inherit}
+.cbox-row{display:flex;gap:8px;justify-content:flex-end}
+.clist{margin-top:.6rem;display:flex;flex-direction:column;gap:6px}
+.citem{background:#FBF9F3;border:1px solid #e8e2d4;border-left:3px solid #0F6E56;border-radius:0;padding:.5rem .75rem;font-size:12px;line-height:1.55;color:#333;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.citem .who{color:#0F6E56;font-weight:500}
+.citem .del{border:none;background:none;color:#A32D2D;cursor:pointer;font-size:12px;padding:0 2px}
+.foot{padding:1rem 1.5rem;font-size:12px;color:#666;text-align:center}
+</style>
+</head>
+<body>
+<div class="pg">
+
+  <div class="nota-prop">
+    <strong>Nota:</strong> Propuesta de estructura para la sección "Reporte ciudadano y ordenamiento territorial" de labrural.org, para revisión en la reunión del 17 de julio de 2026. Cada tarjeta abre una subpágina del mecanismo. Use "Comentar" para registrar los acuerdos de la mesa y.
+  </div>
+
+
+  <div class="hero">
+    <h1>Cuidar el territorio es tarea de todos</h1>
+    <p>El municipio de Arroyo Seco cuenta con un Programa Municipal de Desarrollo Urbano que define qué se puede hacer y dónde. Aquí puedes entender por qué importa, consultar la zonificación antes de construir o comprar, y reportar cambios irregulares de uso de suelo — de forma anónima o por WhatsApp.</p>
+  </div>
+
+  <div class="wrap">
+
+    <div class="sec" data-sec="Estructura general del sitio">
+      <p class="sec-lbl">Las piezas del mecanismo</p>
+      <div class="grid">
+
+        <a class="tile wide" href="teoria_del_cambio.html">
+          <span class="tile-n">1</span>
+          <p class="tile-t">La estrategia completa — teoría del cambio</p>
+          <p class="tile-d">Cómo se articulan la comunicación del programa de desarrollo urbano, la gobernanza ejidal, la actualización normativa municipal y el mecanismo de reporte ciudadano para que infringir deje de ser gratuito. Visualización interactiva de la meta, las cuatro líneas estratégicas y los supuestos que sostienen todo.</p>
+          <div class="tile-foot"><span class="badge">Disponible</span><span class="go">Explorar →</span></div>
+        </a>
+
+        <a class="tile" href="reporte_formulario_anonimo.html">
+          <span class="tile-n">2</span>
+          <p class="tile-t">Reporte anónimo — formulario web</p>
+          <p class="tile-d">Reporta sin dar ningún dato personal. Folio y acuse inmediatos, notificación simultánea a las autoridades y consulta de estatus. Incluye el mapa de zonificación y los documentos del PMDU.</p>
+          <div class="tile-foot"><span class="badge">Disponible</span><span class="go">Ir al formulario →</span></div>
+        </a>
+
+        <a class="tile" href="reporte_whatsapp.html">
+          <span class="tile-n">3</span>
+          <p class="tile-t">Reporte por WhatsApp</p>
+          <p class="tile-d">El camino más directo: manda ubicación, fotos y descripción desde el chat. No es anónimo — tu número lo ve solo quien administra el canal — pero es fácil y funciona con mala señal.</p>
+          <div class="tile-foot"><span class="badge">Propuesta a discutir</span><span class="go">Conocer el canal →</span></div>
+        </a>
+
+        <a class="tile" href="consulta_zonificacion.html">
+          <span class="tile-n">4</span>
+          <p class="tile-t">¿Esto se puede aquí? — consulta de zonificación</p>
+          <p class="tile-d">Consulta qué usos permite cada zona antes de construir, comprar o vender, con las dos columnas "qué sí / qué no" y el trámite de licencia de construcción paso a paso.</p>
+          <div class="dos"><span class="chip">Qué sí / qué no por zona</span><span class="chip">Trámite de licencia</span></div>
+          <div class="tile-foot"><span class="badge">Disponible</span><span class="go">Consultar →</span></div>
+        </a>
+
+        <a class="tile" href="infografia_pmdu.html">
+          <span class="tile-n">5</span>
+          <p class="tile-t">¿Por qué respetar el programa de desarrollo urbano?</p>
+          <p class="tile-d">Infografía en lenguaje ciudadano: qué protege la zonificación (manantiales, río Santa María, tierra agrícola, patrimonio familiar), qué pasa cuando no se respeta, y qué te evita respetarla.</p>
+          <div class="dos"><span class="chip">Infografía</span><span class="chip gris">Versión imprimible en producción</span></div>
+          <div class="tile-foot"><span class="badge">Disponible</span><span class="go">Ver infografía →</span></div>
+        </a>
+
+        <a class="tile wide" href="plan_pilotaje.html" style="border-style:dashed">
+          <span class="tile-n">6</span>
+          <p class="tile-t">Plan de pilotaje — tablero de trabajo de la mesa</p>
+          <p class="tile-d">Material interno para la reunión del 17 de julio: 10 tareas en dos fases con responsable, producto a entregar y fecha editables en vivo, casilla de acuerdo, barra de progreso y envío directo a la hoja de cálculo. Lo que se acuerda aquí es la minuta.</p>
+          <div class="tile-foot"><span class="badge dev">Material de la mesa — no es página ciudadana</span><span class="go">Abrir tablero →</span></div>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="sec" data-sec="Contexto del proceso">
+      <p class="sec-lbl">De dónde viene este esfuerzo</p>
+      <div class="ctx">
+        Este mecanismo nace de un proceso interinstitucional entre el Municipio de Arroyo Seco, CONANP, PROFEPA, SEDESU y la Universidad Autónoma de Querétaro, con talleres participativos realizados en el Campus Concá. El valle agrícola de Concá, dentro de la Reserva de la Biosfera Sierra Gorda, es zona de atención especial por sus manantiales, su río y su vocación agrícola.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="foot">Mecanismo de reporte ciudadano · Propuesta para la mesa interinstitucional del 17 de julio de 2026</div>
+</div>
+
+<script>
+(function(){
+  var KEY='edvac_home_comentarios';
+  var mem=[];
+  function load(){try{var r=localStorage.getItem(KEY);return r?JSON.parse(r):[]}catch(e){return mem}}
+  function save(list){try{localStorage.setItem(KEY,JSON.stringify(list))}catch(e){mem=list}}
+  function fmt(d){var x=new Date(d);return x.toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'})}
+
+  var URL_HOJA='https://script.google.com/macros/s/AKfycbzWWkcOjssCDI_tt_PAu3DzfXcsAI2U6jXzm-8uTcas29TAlamFuvwaMNrTLprfxRK8/exec';
+  var PAGINA='Página principal';
+  var sincronizando=false;
+  function pintaSync(n){var el=document.getElementById('sync');if(!el)return;el.textContent=n?('· por enviar a la hoja: '+n):'· hoja sincronizada';el.style.color=n?'#FAC775':'#9FE1CB'}
+  function sync(){
+    if(!URL_HOJA||sincronizando)return;
+    var all=load();
+    var pend=all.filter(function(c){return !c.env});
+    pintaSync(pend.length);
+    if(!pend.length)return;
+    sincronizando=true;
+    fetch(URL_HOJA,{method:'POST',body:JSON.stringify({comentarios:pend.map(function(c){return {id:c.id||('c'+c.ts),pagina:PAGINA,seccion:c.sec,quien:c.who||'',texto:c.txt,ts:c.ts}})})})
+    .then(function(r){return r.json()})
+    .then(function(j){if(j&&j.ok){var a=load();a.forEach(function(c){c.env=true});save(a);pintaSync(0)}})
+    .catch(function(e){})
+    .finally(function(){sincronizando=false});
+  }
+  setInterval(sync,60000);
+
+
+  var secs=document.querySelectorAll('.sec[data-sec]');
+  secs.forEach(function(sec){
+    var name=sec.getAttribute('data-sec');
+    var btn=document.createElement('button');
+    btn.className='cbtn';btn.textContent='Comentar';
+    var box=document.createElement('div');
+    box.className='cbox';
+    box.innerHTML='<input type="text" placeholder="Quién comenta (opcional): CONANP, PROFEPA, Municipio…"/><textarea placeholder="Acuerdo u observación sobre esta sección"></textarea><div class="cbox-row"><button class="btn" data-a="c">Cancelar</button><button class="btn btn-p" data-a="g">Guardar</button></div>';
+    var list=document.createElement('div');
+    list.className='clist';
+    sec.appendChild(btn);sec.appendChild(box);sec.appendChild(list);
+    btn.addEventListener('click',function(){box.classList.toggle('open');if(box.classList.contains('open'))box.querySelector('textarea').focus()});
+    box.querySelector('[data-a="c"]').addEventListener('click',function(){box.classList.remove('open')});
+    box.querySelector('[data-a="g"]').addEventListener('click',function(){
+      var t=box.querySelector('textarea').value.trim();
+      if(!t)return;
+      var w=box.querySelector('input').value.trim();
+      var all=load();
+      all.push({id:'c'+Date.now()+Math.floor(Math.random()*1000),sec:name,who:w,txt:t,ts:Date.now(),env:false});
+      save(all);
+      sync();
+      box.querySelector('textarea').value='';box.querySelector('input').value='';
+      box.classList.remove('open');
+      render();
+    });
+  });
+
+  function render(){
+    var all=load();
+    secs.forEach(function(sec){
+      var name=sec.getAttribute('data-sec');
+      var list=sec.querySelector('.clist');
+      list.innerHTML='';
+      all.forEach(function(c,i){
+        if(c.sec!==name)return;
+        var d=document.createElement('div');
+        d.className='citem';
+        var left=document.createElement('div');
+        left.innerHTML=(c.who?'<span class="who">'+esc(c.who)+' · </span>':'')+esc(c.txt)+' <span style="color:#999">('+fmt(c.ts)+')</span>';
+        var del=document.createElement('button');
+        del.className='del';del.textContent='✕';del.title='Eliminar comentario';
+        del.addEventListener('click',function(){var a=load();a.splice(i,1);save(a);render()});
+        d.appendChild(left);d.appendChild(del);
+        list.appendChild(d);
+      });
+    });
+  }
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+  render();
+  sync();
+})();
+</script>
+</body>
+</html>

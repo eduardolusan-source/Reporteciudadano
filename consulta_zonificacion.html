@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Esto se puede aquí? — Consulta de zonificación · Arroyo Seco</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:#f4f4f2;color:#1a1a1a;padding:1rem}
+.pg{max-width:860px;margin:0 auto;padding:0 0 3rem}
+.hero{background:#0F6E56;padding:2.5rem 2rem 2rem;border-radius:0 0 12px 12px;margin-bottom:2rem}
+.back{display:inline-block;font-size:12px;color:#9FE1CB;text-decoration:none;margin-bottom:1rem}
+.back:hover{color:#E1F5EE}
+.hero h1{font-size:26px;font-weight:500;color:#E1F5EE;margin-bottom:.5rem;line-height:1.3}
+.hero p{font-size:14px;color:#9FE1CB;line-height:1.6;max-width:580px}
+.wrap{padding:0 1rem}
+.sec{margin-bottom:2rem;position:relative}
+.sec-lbl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#666;margin-bottom:.75rem}
+.nota-prop{background:#fff;border:1px solid #ddd;border-radius:8px;padding:1rem 1.25rem;font-size:12px;color:#666;margin-bottom:1.5rem;line-height:1.6}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;font-size:13px;border-radius:8px;border:1px solid #ccc;background:#fff;color:#1a1a1a;cursor:pointer;text-decoration:none}
+.btn-p{background:#0F6E56;color:#E1F5EE;border-color:#0F6E56}
+
+.map-card{border:1px solid #ddd;border-radius:12px;overflow:hidden;background:#fff}
+.map-foot{padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #ddd;gap:1rem;flex-wrap:wrap}
+.zonas{display:flex;gap:8px;flex-wrap:wrap;padding:1rem 1rem .25rem}
+.z-btn{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;padding:6px 12px;border-radius:99px;border:1px solid #ddd;background:#fff;cursor:pointer;font-family:inherit;transition:border-color .12s}
+.z-btn:hover{border-color:#0F6E56}
+.z-btn.on{border:2px solid #0F6E56;background:#E1F5EE;color:#04342C;padding:5px 11px}
+.z-dot{width:11px;height:11px;border-radius:3px;display:inline-block}
+.z-panel{padding:1rem 1.25rem 1.25rem}
+.z-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:.75rem}
+.z-name{font-size:16px;font-weight:500}
+.z-desc{font-size:13px;color:#555;line-height:1.6;margin-bottom:1rem}
+.sino{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.sino{grid-template-columns:1fr}}
+.si,.no{border-radius:8px;padding:1rem}
+.si{background:#EAF3DE;border:1px solid #C0DD97}
+.no{background:#FCEBEB;border:1px solid #F7C1C1}
+.si h3{font-size:13px;font-weight:500;color:#27500A;margin-bottom:.5rem}
+.no h3{font-size:13px;font-weight:500;color:#791F1F;margin-bottom:.5rem}
+.si li{font-size:12.5px;color:#3B6D11;line-height:1.6;margin-left:16px}
+.no li{font-size:12.5px;color:#A32D2D;line-height:1.6;margin-left:16px}
+.z-lic{margin-top:.85rem;font-size:12px;color:#555;background:#f9f9f7;border:1px solid #eee;border-radius:8px;padding:.6rem .85rem;line-height:1.6}
+
+.tram{border:1px solid #ddd;border-radius:12px;background:#fff;overflow:hidden}
+.tram-head{background:#0F6E56;padding:1.25rem 1.5rem}
+.tram-t{font-size:17px;font-weight:500;color:#E1F5EE;margin-bottom:3px}
+.tram-s{font-size:13px;color:#9FE1CB;line-height:1.5}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;padding:1.25rem 1.5rem;border-bottom:1px solid #eee}
+.step{border:1px solid #ddd;border-radius:8px;padding:.75rem;background:#f9f9f7}
+.step-n{width:22px;height:22px;border-radius:50%;background:#E1F5EE;color:#0F6E56;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.step-t{font-size:12px;line-height:1.5}
+.step-d{margin-top:6px;font-size:11px;color:#666}
+.enlaces{padding:1rem 1.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.enl{border:1px solid #ddd;border-radius:12px;padding:.85rem 1rem;display:flex;flex-direction:column;gap:5px;text-decoration:none;color:#1a1a1a;transition:border-color .12s}
+.enl:hover{border-color:#0F6E56}
+.enl-t{font-size:13px;font-weight:500;color:#0F6E56}
+.enl-d{font-size:11.5px;color:#666;line-height:1.5}
+.badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:99px;background:#FAEEDA;color:#633806;align-self:flex-start}
+.aviso-compra{background:#FAEEDA;border:1px solid #FAC775;border-radius:12px;padding:1rem 1.25rem;font-size:13px;color:#633806;line-height:1.7}
+.cta-rep{background:#fff;border:1px solid #ddd;border-radius:12px;padding:1rem 1.25rem;font-size:13px;line-height:1.6;color:#444;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+
+.cbar{position:sticky;top:0;z-index:50;background:#1a1a1a;color:#fff;border-radius:10px;padding:.6rem 1rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:1.5rem}
+.cbar span{font-size:12px}
+.cbar .cnt{background:#0F6E56;border-radius:99px;padding:2px 10px;font-size:12px;font-weight:500}
+.cbar button{font-size:12px;padding:5px 12px;border-radius:8px;border:1px solid #555;background:#2c2c2a;color:#fff;cursor:pointer}
+.cbar button.exp{background:#0F6E56;border-color:#0F6E56}
+.cbtn{position:absolute;top:-4px;right:0;font-size:11px;padding:4px 10px;border-radius:99px;border:1px solid #5DCAA5;background:#E1F5EE;color:#085041;cursor:pointer;z-index:5}
+.cbox{margin-top:.75rem;border:1px solid #5DCAA5;border-radius:8px;background:#fff;padding:.75rem;display:none;flex-direction:column;gap:8px}
+.cbox.open{display:flex}
+.cbox textarea{width:100%;border:1px solid #ccc;border-radius:8px;padding:8px 10px;font-size:13px;font-family:inherit;min-height:60px}
+.cbox input{width:100%;border:1px solid #ccc;border-radius:8px;padding:7px 10px;font-size:13px;font-family:inherit}
+.cbox-row{display:flex;gap:8px;justify-content:flex-end}
+.clist{margin-top:.6rem;display:flex;flex-direction:column;gap:6px}
+.citem{background:#FBF9F3;border:1px solid #e8e2d4;border-left:3px solid #0F6E56;border-radius:0;padding:.5rem .75rem;font-size:12px;line-height:1.55;color:#333;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.citem .who{color:#0F6E56;font-weight:500}
+.citem .del{border:none;background:none;color:#A32D2D;cursor:pointer;font-size:12px;padding:0 2px}
+.foot{padding:1rem 1.5rem;font-size:12px;color:#666;text-align:center}
+</style>
+</head>
+<body>
+<div class="pg">
+
+  <div class="nota-prop">
+    <strong>Nota:</strong> Propuesta de diseño para la subpágina "¿Esto se puede aquí?" de labrural.org, para revisión en la reunión del 17 de julio de 2026. Los usos permitidos y no permitidos por zona son <strong>ejemplos ilustrativos por validar contra el texto del PMDU</strong>, y los enlaces del trámite de licencia se conectarán con los que defina el Municipio. Use "Comentar" para registrar los acuerdos y.
+  </div>
+
+
+  <div class="hero">
+    <a class="back" href="index.html">← Volver a la página principal</a>
+    <h1>¿Esto se puede aquí?</h1>
+    <p>Antes de construir, comprar o vender un terreno, consulta qué permite la zonificación del Programa Municipal de Desarrollo Urbano. Conocerla a tiempo te ahorra dinero, trámites y problemas legales.</p>
+  </div>
+
+  <div class="wrap">
+
+    <div class="sec" data-sec="Consulta por zona (qué sí / qué no)">
+      <p class="sec-lbl">Elige una zona para ver qué se permite</p>
+      <div class="map-card">
+        <div class="zonas" id="zbtns"></div>
+        <div class="z-panel">
+          <div class="z-head"><span class="z-dot" id="zdot"></span><span class="z-name" id="zname"></span></div>
+          <p class="z-desc" id="zdesc"></p>
+          <div class="sino">
+            <div class="si"><h3>Qué sí se puede</h3><ul id="zsi"></ul></div>
+            <div class="no"><h3>Qué no se puede</h3><ul id="zno"></ul></div>
+          </div>
+          <p class="z-lic" id="zlic"></p>
+        </div>
+        <div class="map-foot">
+          <span style="font-size:12px;color:#666">Contenidos de ejemplo — se validarán contra la zonificación secundaria del PMDU · La versión final incluirá el mapa consultable</span>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn">Ver en Google Earth</button>
+            <button class="btn btn-p">Descargar KMZ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" data-sec="Trámite de licencia de construcción">
+      <p class="sec-lbl">La vía regular — trámite de licencia de construcción</p>
+      <div class="tram">
+        <div class="tram-head">
+          <p class="tram-t">Regularizarse es más fácil que evadir</p>
+          <p class="tram-s">Si tu proyecto es compatible con la zona, el camino legal es claro. Así se tramita la licencia ante el Municipio de Arroyo Seco.</p>
+        </div>
+        <div class="steps">
+          <div class="step"><div class="step-n">1</div><p class="step-t">Verifica la compatibilidad de uso de tu predio en esta página o en Desarrollo Urbano</p><p class="step-d">Consulta gratuita</p></div>
+          <div class="step"><div class="step-n">2</div><p class="step-t">Reúne los requisitos: identificación, documento de propiedad y croquis o proyecto</p><p class="step-d">Lista completa en el enlace de requisitos</p></div>
+          <div class="step"><div class="step-n">3</div><p class="step-t">Presenta la solicitud en la ventanilla de Desarrollo Urbano y paga los derechos</p><p class="step-d">Conforme al tabulador vigente</p></div>
+          <div class="step"><div class="step-n">4</div><p class="step-t">Recibe tu licencia y construye conforme a lo autorizado</p><p class="step-d">Consérvala en la obra</p></div>
+        </div>
+        <div class="enlaces">
+          <a class="enl" href="#"><span class="enl-t">Requisitos y formato de solicitud</span><span class="enl-d">Documentos necesarios y formato oficial de la solicitud de licencia</span><span class="badge">Enlace por definir con el Municipio</span></a>
+          <a class="enl" href="#"><span class="enl-t">Tabulador de derechos</span><span class="enl-d">Costo de la licencia según el tipo y tamaño de la obra (Ley de Ingresos)</span><span class="badge">Enlace por definir con el Municipio</span></a>
+          <a class="enl" href="#"><span class="enl-t">Ventanilla y horarios</span><span class="enl-d">Dirección de Desarrollo Urbano, presidencia municipal de Arroyo Seco</span><span class="badge">Enlace por definir con el Municipio</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" data-sec="Aviso antes de comprar o vender">
+      <p class="sec-lbl">Antes de comprar o vender un lote</p>
+      <div class="aviso-compra">
+        <strong>Cuidado con los lotes sin compatibilidad de uso.</strong> Un terreno ofrecido en zona agrícola o no urbanizable no puede obtener licencia de construcción, no puede conectarse legalmente a servicios y difícilmente puede escriturarse. Comprarlo significa arriesgar el patrimonio de tu familia. Verifica la zona en esta página antes de dar cualquier anticipo.
+      </div>
+    </div>
+
+    <div class="sec" data-sec="Enlace al reporte ciudadano">
+      <p class="sec-lbl">¿Ves una obra que no corresponde con la zona?</p>
+      <div class="cta-rep">
+        <span>Puedes reportarla de forma anónima o por WhatsApp. Cada reporte activa la notificación automática a las autoridades responsables.</span>
+        <a class="btn btn-p" href="reporte_formulario_anonimo.html" style="text-decoration:none">Hacer un reporte</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="foot">Mecanismo de reporte ciudadano · Propuesta para la mesa interinstitucional del 17 de julio de 2026</div>
+</div>
+
+<script>
+(function(){
+  var ZONAS=[
+    {id:'agr',nombre:'Agrícola de riego',color:'#b8dfc9',desc:'El corazón productivo del valle: parcelas de riego con vocación agrícola protegida por el PMDU y el régimen ejidal.',
+     si:['Cultivos, huertas y actividad agropecuaria','Infraestructura de riego y bodegas agrícolas','Vivienda aislada del productor, sujeta a licencia'],
+     no:['Lotificación o fraccionamiento de parcelas','Apertura de calles privadas','Conjuntos habitacionales o comerciales'],
+     lic:'Las construcciones de apoyo agrícola requieren licencia; la lotificación no es autorizable en esta zona.'},
+    {id:'hr',nombre:'Habitacional rural',color:'#5DCAA5',desc:'Zonas de vivienda de baja densidad dentro de las localidades, compatibles con el paisaje rural.',
+     si:['Vivienda unifamiliar con licencia','Comercio básico de barrio (tienda, fonda)','Huertos y corrales de traspatio'],
+     no:['Edificios multifamiliares de alta densidad','Industria o talleres contaminantes','Fraccionamientos cerrados'],
+     lic:'Toda obra nueva o ampliación requiere licencia de construcción municipal.'},
+    {id:'hm',nombre:'Habitacional mixto',color:'#1D9E75',desc:'El centro de las localidades: vivienda combinada con comercio y servicios de escala local.',
+     si:['Vivienda y comercio compatible (locales, servicios)','Equipamiento público y oficinas','Hospedaje de pequeña escala con licencia'],
+     no:['Usos industriales o de alto impacto','Estaciones de servicio sin dictamen','Obras que excedan la altura permitida'],
+     lic:'Los cambios de uso (por ejemplo, de vivienda a comercio) requieren autorización previa.'},
+    {id:'nu',nombre:'No urbanizable',color:'#EAF3DE',desc:'Suelos de conservación, laderas, zonas de recarga y áreas de valor ambiental donde no procede el crecimiento urbano.',
+     si:['Conservación y restauración ecológica','Actividades de bajo impacto autorizadas por la instancia ambiental','Senderos y señalética interpretativa'],
+     no:['Cualquier construcción habitacional o comercial','Desmonte, despalme o extracción de materiales','Apertura de caminos sin autorización'],
+     lic:'No se expiden licencias de construcción en esta zona.'},
+    {id:'za',nombre:'Zona de amortiguamiento',color:'#FAC775',desc:'Franja de transición con la Reserva de la Biosfera Sierra Gorda: los usos se regulan de forma conjunta con CONANP.',
+     si:['Actividades productivas tradicionales compatibles','Proyectos autorizados conforme al programa de manejo de la Reserva'],
+     no:['Cambios de uso de suelo sin autorización de CONANP y SEMARNAT','Desarrollos inmobiliarios','Afectación a vegetación nativa'],
+     lic:'Además de la licencia municipal, se requiere compatibilidad con el programa de manejo de la Reserva.'},
+    {id:'eco',nombre:'Ecoturístico',color:'#F5C4B3',desc:'Áreas aptas para servicios turísticos de bajo impacto ligados al río, los manantiales y el paisaje.',
+     si:['Cabañas y servicios turísticos de baja densidad con licencia','Áreas de acampado organizadas','Senderos, miradores y palapas'],
+     no:['Construcción en zona federal del río o los manantiales','Desarrollos de alta densidad','Descargas sin tratamiento a cuerpos de agua'],
+     lic:'Los proyectos junto a cauces requieren además delimitación de zona federal ante CONAGUA.'}
+  ];
+  var cur=0;
+  var wrap=document.getElementById('zbtns');
+  ZONAS.forEach(function(z,i){
+    var b=document.createElement('button');
+    b.className='z-btn';
+    b.innerHTML='<span class="z-dot" style="background:'+z.color+'"></span>'+z.nombre;
+    b.addEventListener('click',function(){cur=i;pinta()});
+    wrap.appendChild(b);
+  });
+  function pinta(){
+    var z=ZONAS[cur];
+    var bs=wrap.querySelectorAll('.z-btn');
+    bs.forEach(function(b,i){b.classList.toggle('on',i===cur)});
+    document.getElementById('zdot').style.background=z.color;
+    document.getElementById('zname').textContent=z.nombre;
+    document.getElementById('zdesc').textContent=z.desc;
+    document.getElementById('zsi').innerHTML=z.si.map(function(s){return '<li>'+s+'</li>'}).join('');
+    document.getElementById('zno').innerHTML=z.no.map(function(s){return '<li>'+s+'</li>'}).join('');
+    document.getElementById('zlic').innerHTML='<strong>Licencia:</strong> '+z.lic;
+  }
+  pinta();
+
+  var KEY='edvac_zon_comentarios';
+  var mem=[];
+  function load(){try{var r=localStorage.getItem(KEY);return r?JSON.parse(r):[]}catch(e){return mem}}
+  function save(list){try{localStorage.setItem(KEY,JSON.stringify(list))}catch(e){mem=list}}
+  function fmt(d){var x=new Date(d);return x.toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'})}
+
+  var URL_HOJA='https://script.google.com/macros/s/AKfycbzWWkcOjssCDI_tt_PAu3DzfXcsAI2U6jXzm-8uTcas29TAlamFuvwaMNrTLprfxRK8/exec';
+  var PAGINA='Consulta de zonificación';
+  var sincronizando=false;
+  function pintaSync(n){var el=document.getElementById('sync');if(!el)return;el.textContent=n?('· por enviar a la hoja: '+n):'· hoja sincronizada';el.style.color=n?'#FAC775':'#9FE1CB'}
+  function sync(){
+    if(!URL_HOJA||sincronizando)return;
+    var all=load();
+    var pend=all.filter(function(c){return !c.env});
+    pintaSync(pend.length);
+    if(!pend.length)return;
+    sincronizando=true;
+    fetch(URL_HOJA,{method:'POST',body:JSON.stringify({comentarios:pend.map(function(c){return {id:c.id||('c'+c.ts),pagina:PAGINA,seccion:c.sec,quien:c.who||'',texto:c.txt,ts:c.ts}})})})
+    .then(function(r){return r.json()})
+    .then(function(j){if(j&&j.ok){var a=load();a.forEach(function(c){c.env=true});save(a);pintaSync(0)}})
+    .catch(function(e){})
+    .finally(function(){sincronizando=false});
+  }
+  setInterval(sync,60000);
+
+
+  var secs=document.querySelectorAll('.sec[data-sec]');
+  secs.forEach(function(sec){
+    var name=sec.getAttribute('data-sec');
+    var btn=document.createElement('button');
+    btn.className='cbtn';btn.textContent='Comentar';
+    var box=document.createElement('div');
+    box.className='cbox';
+    box.innerHTML='<input type="text" placeholder="Quién comenta (opcional): CONANP, PROFEPA, Municipio…"/><textarea placeholder="Acuerdo u observación sobre esta sección"></textarea><div class="cbox-row"><button class="btn" data-a="c">Cancelar</button><button class="btn btn-p" data-a="g">Guardar</button></div>';
+    var list=document.createElement('div');
+    list.className='clist';
+    sec.appendChild(btn);sec.appendChild(box);sec.appendChild(list);
+    btn.addEventListener('click',function(){box.classList.toggle('open');if(box.classList.contains('open'))box.querySelector('textarea').focus()});
+    box.querySelector('[data-a="c"]').addEventListener('click',function(){box.classList.remove('open')});
+    box.querySelector('[data-a="g"]').addEventListener('click',function(){
+      var t=box.querySelector('textarea').value.trim();
+      if(!t)return;
+      var w=box.querySelector('input').value.trim();
+      var all=load();
+      all.push({id:'c'+Date.now()+Math.floor(Math.random()*1000),sec:name,who:w,txt:t,ts:Date.now(),env:false});
+      save(all);
+      sync();
+      box.querySelector('textarea').value='';box.querySelector('input').value='';
+      box.classList.remove('open');
+      render();
+    });
+  });
+
+  function render(){
+    var all=load();
+    secs.forEach(function(sec){
+      var name=sec.getAttribute('data-sec');
+      var list=sec.querySelector('.clist');
+      list.innerHTML='';
+      all.forEach(function(c,i){
+        if(c.sec!==name)return;
+        var d=document.createElement('div');
+        d.className='citem';
+        var left=document.createElement('div');
+        left.innerHTML=(c.who?'<span class="who">'+esc(c.who)+' · </span>':'')+esc(c.txt)+' <span style="color:#999">('+fmt(c.ts)+')</span>';
+        var del=document.createElement('button');
+        del.className='del';del.textContent='✕';del.title='Eliminar comentario';
+        del.addEventListener('click',function(){var a=load();a.splice(i,1);save(a);render()});
+        d.appendChild(left);d.appendChild(del);
+        list.appendChild(d);
+      });
+    });
+  }
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+  render();
+  sync();
+})();
+</script>
+</body>
+</html>
