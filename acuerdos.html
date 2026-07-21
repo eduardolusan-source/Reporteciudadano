@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acuerdos y pendientes · Valle de Concá y Arroyo Seco</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:#f4f4f2;color:#1a1a1a;padding:1rem}
+.pg{max-width:860px;margin:0 auto;padding:0 0 3rem}
+.hero{background:#0F6E56;padding:2.5rem 2rem 2rem;border-radius:0 0 12px 12px;margin-bottom:2rem}
+.hero h1{font-size:26px;font-weight:500;color:#E1F5EE;margin-bottom:.5rem;line-height:1.3}
+.hero p{font-size:14px;color:#9FE1CB;line-height:1.6;max-width:600px}
+.home-btn{display:inline-flex;align-items:center;gap:8px;background:#E1F5EE;color:#085041;text-decoration:none;font-size:14px;font-weight:500;padding:9px 18px;border-radius:99px;margin-bottom:1.25rem;transition:background .12s}
+.home-btn:hover{background:#9FE1CB}
+.wrap{padding:0 1rem}
+.sec{margin-bottom:1.75rem}
+.sec-lbl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#666;margin-bottom:.75rem}
+.nota-prop{background:#fff;border:1px solid #ddd;border-radius:8px;padding:1rem 1.25rem;font-size:12px;color:#666;margin-bottom:1.5rem;line-height:1.6}
+
+.minuta{max-width:760px;margin:0 auto;background:#0F6E56;border-radius:12px;padding:1.25rem 1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.minuta .mt{font-size:15px;font-weight:500;color:#E1F5EE;line-height:1.5}
+.minuta .ms{font-size:12px;color:#9FE1CB;margin-top:3px}
+.minuta a{display:inline-block;background:#E1F5EE;color:#085041;text-decoration:none;font-size:13px;font-weight:500;padding:8px 16px;border-radius:99px}
+.minuta a:hover{background:#9FE1CB}
+
+.acuerdos{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;max-width:760px;margin:0 auto}
+.ac{background:#E1F5EE;border-radius:8px;padding:12px 14px}
+.ac .an{font-size:13px;font-weight:500;color:#085041;margin-bottom:4px}
+.ac p{font-size:12.5px;color:#0F6E56;line-height:1.55}
+
+.tabla{max-width:760px;margin:0 auto;background:#fff;border:1px solid #ddd;border-radius:12px;overflow:hidden}
+.fila{display:grid;grid-template-columns:1fr 150px 110px;gap:10px;padding:.8rem 1.1rem;border-bottom:1px solid #eee;align-items:center}
+.fila:last-child{border-bottom:none}
+.fila.hd{background:#f8f8f6;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#888;padding:.6rem 1.1rem}
+.fila .c1{font-size:13px;color:#333;line-height:1.55}
+.fila .c1 a{color:#0F6E56}
+.fila .c2{font-size:12.5px;color:#555}
+.badge{display:inline-block;font-size:11.5px;font-weight:500;padding:4px 10px;border-radius:99px;text-align:center}
+.b-ok{background:#E1F5EE;color:#085041;border:1px solid #5DCAA5}
+.b-curso{background:#FAEEDA;color:#633806;border:1px solid #FAC775}
+.b-pend{background:#f1f1ef;color:#666;border:1px solid #ddd}
+@media(max-width:560px){.fila{grid-template-columns:1fr;gap:4px}.fila.hd{display:none}}
+
+.pend{max-width:760px;margin:0 auto;background:#fff;border:1px solid #ddd;border-radius:12px;padding:1rem 1.5rem}
+.pend ul{margin:0;padding-left:18px}
+.pend li{font-size:13px;color:#444;line-height:1.7;margin-bottom:4px}
+
+.prox{max-width:760px;margin:0 auto;background:#fff;border:1px solid #ddd;border-radius:8px;padding:.85rem 1.25rem;text-align:center}
+.prox p{font-size:13px;color:#555;line-height:1.6}
+.foot{padding:1rem 1.5rem;font-size:12px;color:#666;text-align:center}
+</style>
+</head>
+<body>
+<div class="pg">
+
+  <div class="nota-prop">
+    <strong>Nota:</strong> Esta página concentra los acuerdos vigentes y los pendientes de la reunión interinstitucional del 17 de julio de 2026 (Campus Concá, Arroyo Seco). Se actualiza conforme avanza el seguimiento.
+  </div>
+
+  <div class="hero">
+    <a class="home-btn" href="index.html">⌂ &nbsp;Volver al inicio</a>
+    <h1>Acuerdos y pendientes</h1>
+    <p>Lo que se acordó, quién se comprometió a qué y en qué estatus va cada cosa. La minuta completa está disponible abajo.</p>
+  </div>
+
+  <div class="wrap">
+
+    <div class="sec">
+      <div class="minuta">
+        <div>
+          <p class="mt">Minuta de la reunión interinstitucional</p>
+          <p class="ms">17 de julio de 2026 · Campus Concá, UAQ · versión distribuida a asistentes</p>
+        </div>
+        <a href="https://drive.google.com/file/d/1vtiClLO7WU2dt14MkbYOvVhQf-CSrZyc/view" target="_blank" rel="noopener">Abrir la minuta (PDF)</a>
+      </div>
+    </div>
+
+    <div class="sec">
+      <p class="sec-lbl">Acuerdos conceptuales</p>
+      <div class="acuerdos">
+        <div class="ac"><p class="an">Reporte ≠ denuncia</p><p>El mecanismo no sustituye los canales oficiales de denuncia: facilita, documenta y canaliza la información hacia los procedimientos formales.</p></div>
+        <div class="ac"><p class="an">Anclaje municipal</p><p>El municipio recibe los reportes, verifica en campo y con catastro, complementa y canaliza a la instancia competente. La UAQ acompaña como articulador y garante de continuidad.</p></div>
+        <div class="ac"><p class="an">Filtros de calidad</p><p>Evidencia fotográfica y ubicación obligatorias; los reportes incompletos se desechan automáticamente para optimizar la verificación.</p></div>
+        <div class="ac"><p class="an">Vigilancia en órganos existentes</p><p>El Consejo Municipal de Ordenamiento Territorial y Desarrollo Urbano vigila la implementación. La CONANP recibe notificación de los reportes con afectaciones en zonas forestales y la CONAGUA de los que afectan cuerpos de agua.</p></div>
+        <div class="ac"><p class="an">PMDU primero</p><p>El esfuerzo inmediato es socializar el PMDU y capacitar al municipio para operarlo. El reporte ciudadano es un componente del esquema, no su centro.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <p class="sec-lbl">Compromisos y su estatus</p>
+      <div class="tabla">
+        <div class="fila hd"><span>Compromiso</span><span>Responsable</span><span>Estatus</span></div>
+        <div class="fila">
+          <span class="c1">Sistematizar la reunión y enviar la minuta a los asistentes</span>
+          <span class="c2">UAQ (Laboratorio de Desarrollo Rural)</span>
+          <span><span class="badge b-ok">Cumplido</span></span>
+        </div>
+        <div class="fila">
+          <span class="c1">Repositorio común de materiales de capacitación, resguardado por el Laboratorio para que sobreviva a los cambios de administración → <a href="https://drive.google.com/drive/folders/1Uo8LlbRoWNkDw8Sc-9cQDW6AUnkq3dPA" target="_blank" rel="noopener">Repositorio de capacitación territorial — Arroyo Seco</a></span>
+          <span class="c2">UAQ (Laboratorio de Desarrollo Rural)</span>
+          <span><span class="badge b-ok">Cumplido</span></span>
+        </div>
+        <div class="fila">
+          <span class="c1">Propuesta de socialización y divulgación del PMDU, para validar con el municipio por correo</span>
+          <span class="c2">UAQ · agosto de 2026</span>
+          <span><span class="badge b-curso">En curso</span></span>
+        </div>
+        <div class="fila">
+          <span class="c1">Compartir el análisis de estructura organizativa y reglamentos municipales</span>
+          <span class="c2">José Alfredo Morales</span>
+          <span><span class="badge b-pend">Pendiente</span></span>
+        </div>
+        <div class="fila">
+          <span class="c1">Módulo jurídico de capacitación sobre ilícitos ambientales</span>
+          <span class="c2">José Alfredo Morales</span>
+          <span><span class="badge b-pend">Pendiente</span></span>
+        </div>
+        <div class="fila">
+          <span class="c1">Reunión de planeación interinstitucional para acordar los contenidos del taller de capacitación al municipio (vía técnica, con SEDESU, y vía jurídica)</span>
+          <span class="c2">Colectivo</span>
+          <span><span class="badge b-pend">Pendiente</span></span>
+        </div>
+        <div class="fila">
+          <span class="c1">Taller de capacitación: primero funcionarios y áreas operativas, luego cabildo, después ejidos y ciudadanía</span>
+          <span class="c2">Colectivo</span>
+          <span><span class="badge b-pend">Pendiente</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <p class="sec-lbl">Pendientes registrados en la reunión</p>
+      <div class="pend">
+        <ul>
+          <li>Incluir a SEMARNAT, CONAFOR y CONAGUA en el esqueleto de competencias por tipo de infracción, antes de diseñar los formularios.</li>
+          <li>Jornadas de trámites bajo demanda del municipio (propuesta de Tania Reyes, Comité de Vigilancia Ambiental Pumas).</li>
+          <li>Diagnóstico compartido sobre las raíces del problema: compras de terrenos por personas migrantes radicadas en Estados Unidos y ventas irregulares promovidas por agentes inmobiliarios.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="prox">
+        <p><strong>Siguiente sesión:</strong> reunión mensual de seguimiento, con revisión de compromisos y del avance de la socialización del PMDU. Fecha por confirmar.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="foot">Mecanismo de reporte ciudadano · Acuerdos de la reunión interinstitucional del 17 de julio de 2026</div>
+</div>
+</body>
+</html>
