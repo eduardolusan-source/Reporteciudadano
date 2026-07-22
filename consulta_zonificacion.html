@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <title>¿Esto se puede aquí? — Consulta de zonificación · Valle de Concá</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <style>
@@ -51,7 +52,56 @@ body{font-family:system-ui,sans-serif;background:#f4f4f2;color:#1a1a1a;padding:1
 .cta a{display:inline-block;background:#E1F5EE;color:#085041;text-decoration:none;font-size:13px;font-weight:500;padding:9px 18px;border-radius:99px}
 .cta a:hover{background:#9FE1CB}
 .foot{padding:1rem 1.5rem;font-size:12px;color:#666;text-align:center}
+
+.sino{max-width:760px;margin:0 auto}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.chip-z{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--borde,#ddd);background:var(--carta,#fff);border-radius:99px;padding:7px 14px;font-size:13px;font-family:inherit;color:#333;cursor:pointer;transition:background .12s}
+.chip-z .pt-c{width:11px;height:11px;border-radius:3px;border:1px solid rgba(0,0,0,.25)}
+.chip-z.on{background:#0F6E56;color:#E1F5EE;border-color:#0F6E56}
+.sino-panel{background:var(--carta,#fff);border:1px solid var(--borde,#ddd);border-radius:14px;padding:1.25rem 1.5rem}
+.sino-panel .zt{font-family:'Fraunces',serif;font-weight:600;font-size:19px;color:#085041;margin-bottom:2px}
+.sino-panel .zq{font-size:13px;color:#555;line-height:1.6;margin-bottom:4px}
+.sino-panel .zr{font-size:12.5px;color:#0F6E56;line-height:1.6;margin-bottom:12px}
+.sino-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.sino-cols{grid-template-columns:1fr}}
+.col-si,.col-no{border-radius:12px;padding:12px 14px}
+.col-si{background:#EAF7F0;border:1px solid #BFE5D2}
+.col-no{background:#FBEED8;border:1px solid #EFC98F}
+.col-si .ch,.col-no .ch{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.col-si .ch{color:#085041}
+.col-no .ch{color:#6B4210}
+.col-si ul,.col-no ul{margin:0;padding-left:16px}
+.col-si li{font-size:12.5px;color:#0A4A38;line-height:1.6;margin-bottom:5px}
+.col-no li{font-size:12.5px;color:#5F3B0E;line-height:1.6;margin-bottom:5px}
+.sino-nota{font-size:11.5px;color:#8A8171;line-height:1.6;margin-top:12px;border-top:1px solid #eee;padding-top:10px}
+
 </style>
+
+<style>
+/* ==== Capa de identidad: papel, Fraunces, hilo de la acequia ==== */
+:root{--tinta:#242920;--verde:#0F6E56;--verde-osc:#074233;--menta:#E1F5EE;--ambar:#E8A85A;--papel:#F6F2E9;--carta:#FFFDF8;--borde:#E5DCCB}
+body{font-family:'Instrument Sans',system-ui,sans-serif;background:var(--papel);color:var(--tinta)}
+.hero{background:linear-gradient(155deg,#0F6E56 0%,#0A5B45 55%,#074233 100%);box-shadow:inset 0 -40px 80px rgba(0,0,0,.12)}
+.hero h1{font-family:'Fraunces',serif;font-weight:600;font-size:31px;letter-spacing:-.01em}
+.hero h1::after{content:'';display:block;width:120px;height:8px;margin-top:12px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='8' viewBox='0 0 24 8'%3E%3Cpath d='M0 4 Q6 0 12 4 T24 4' fill='none' stroke='%23E8A85A' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x}
+.sec-lbl{color:#8A8171;letter-spacing:.14em}
+.cd,.st,.card,.pend,.tabla,.cadena,.arg,.det,.rol,.enl,.leyenda,.cartel,.trans,.nota-prop,.tile,.minuta-w{background:var(--carta);border-color:var(--borde);border-radius:14px}
+.cd,.st,.tile{box-shadow:0 1px 2px rgba(36,41,32,.05);transition:transform .15s ease,box-shadow .15s ease}
+.cd:hover,.st:hover,.tile:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(15,110,86,.12)}
+.st .n{font-family:'Fraunces',serif;font-weight:600;font-size:28px}
+.tag .t1,.meta-t{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:22px}
+.cd .ct,.pr .pt,.rol .rn,.ac .an{font-weight:600}
+.ef,.pr,.ac{border-radius:12px}
+.paso-c .fl{color:var(--ambar)}
+.cadena .cierre{color:#A05B1F}
+.badge{border-radius:99px}
+.b-curso,.sup{background:#FBEED8;border-color:#EFC98F;color:#6B4210}
+.foot{color:#8A8171}
+.foot::before{content:'';display:block;width:90px;height:8px;margin:0 auto 10px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='8' viewBox='0 0 24 8'%3E%3Cpath d='M0 4 Q6 0 12 4 T24 4' fill='none' stroke='%23E8A85A' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x;opacity:.7}
+a{color:var(--verde)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
 </head>
 <body>
 <div class="pg">
@@ -78,6 +128,24 @@ body{font-family:system-ui,sans-serif;background:#f4f4f2;color:#1a1a1a;padding:1
       <div class="leyenda">
         <p class="ley-t">Leyenda</p>
         <div class="ley-grid" id="leyenda"></div>
+      </div>
+    </div>
+
+
+    <div class="sec">
+      <p class="sec-lbl">Qué sí y qué no, zona por zona</p>
+      <div class="sino" id="sino">
+        <div class="chips" id="chipsZona"></div>
+        <div class="sino-panel">
+          <p class="zt" id="znTit"></p>
+          <p class="zq" id="znQue"></p>
+          <p class="zr" id="znReg"></p>
+          <div class="sino-cols">
+            <div class="col-si"><p class="ch">✓ Qué sí se puede</p><ul id="znSi"></ul></div>
+            <div class="col-no"><p class="ch">✗ Qué no se puede</p><ul id="znNo"></ul></div>
+          </div>
+          <p class="sino-nota">Resumen con base en la Memoria Técnica y las Normas Generales del PMDU de Arroyo Seco. Los giros específicos permitidos y prohibidos constan en la Tabla de Compatibilidad de Usos (anexo del PMDU): antes de construir o abrir un negocio, solicita el dictamen de uso de suelo en Desarrollo Urbano del Municipio.</p>
+        </div>
       </div>
     </div>
 
@@ -133,7 +201,7 @@ var ZONA_INFO={
  'ECO':{que:'Zona ecoturística: proyectos de turismo de bajo impacto compatibles con la conservación.',regla:'Al menos 80% del predio libre de construcción · máx. 2 niveles'},
  'I':{que:'Zona industrial: procesos productivos y actividades relacionadas.',regla:'Lote tipo 300 m² · frente mínimo 15 m · máx. 2 niveles'},
  'PCCA':{que:'Cauces y cuerpos de agua con sus riberas, zonas de influencia y zonas federales.',tram:'Aquí no procede licencia de construcción. Cualquier intervención requiere revisión de la autoridad.'},
- 'ZAM':{que:'Zona de amortiguamiento de la Reserva de la Biosfera Sierra Gorda: protege las zonas núcleo; solo actividades productivas de las comunidades compatibles con el Programa de Manejo.',tram:'No urbanizable. Las autorizaciones de aprovechamiento corresponden a SEMARNAT y CONANP.'},
+ 'ZAM':{que:'Zona de amortiguamiento de la Reserva: dentro conviven tierras agrícolas (muchas ejidales) y forestales, con reglas distintas.',tram:'No urbanizable: no procede urbanizar ni lotificar. Lo agrícola sigue produciendo; en el monte, cambiar el uso del suelo requiere autorización de SEMARNAT; en parcelas ejidales decide también la asamblea.'},
  'ZN':{que:'Zona núcleo de la Reserva: ecosistemas mejor conservados; solo preservación, investigación y educación ambiental.',tram:'No urbanizable, máxima protección. Autorizaciones a cargo de SEMARNAT y CONANP.'}
 };
 var DENS={
@@ -173,11 +241,11 @@ function popup(p){
   if(i.que)htm+='<p class="pz-guia">'+i.que+'</p>';
   if(i.regla)htm+='<p class="pz-guia" style="color:#0F6E56;margin-top:4px"><strong>Reglas clave:</strong> '+i.regla+'</p>';
   htm+='<p class="pz-guia" style="margin-top:4px">'+i.tram+'</p>';
-  htm+='<p class="pz-disc">Resumen orientativo del PMDU; no sustituye el dictamen oficial del Municipio.</p></div>';
+  htm+='<p class="pz-guia" style="margin-top:6px"><a href="#sino" onclick="seleccionaFamilia(\''+fam(p.cve)+'\')" style="color:#0F6E56;font-weight:600">Ver qué sí y qué no en esta zona ↓</a></p>';htm+='<p class="pz-disc">Resumen orientativo del PMDU; no sustituye el dictamen oficial del Municipio.</p></div>';
   return htm;
 }
 var capa=L.geoJSON(ZONAS,{style:estilo,onEachFeature:function(f,l){l.bindPopup(popup(f.properties))}}).addTo(mapa);
-mapa.fitBounds(capa.getBounds());
+mapa.setView([21.4465,-99.633],14); // encuadre inicial: pueblo de Concá
 
 // Leyenda agrupada
 var vistos={},orden=['HR','HM','HMM','CS','E','ECO','I','PCCA','ZAM','ZN'];
@@ -214,6 +282,70 @@ function zonaDe(lng,lat){
   }
   return null;
 }
+
+
+// ===== Qué sí / qué no por zona =====
+var SINO={
+ 'HR':{t:'Habitacional rural',q:'Asentamientos rurales y localidades dispersas del valle.',
+  r:'Densidades: aislada 10 viv/ha (lote 1,000 m², frente 20 m) · mínima 20 viv/ha (500 m², 15 m) · baja 35 viv/ha (350 m², 12 m). Máximo 2 niveles (6 m).',
+  si:['Vivienda rural','Comercio básico y servicios de nivel vecinal','Equipamiento de nivel básico','Subdividir predios conforme a la norma particular de subdivisión en uso habitacional rural'],
+  no:['Rebasar la densidad de viviendas de la clave','Construir más de 2 niveles o 6 m de altura','Lotes menores al lote tipo (salvo vivienda unifamiliar de 90 m² con frente de 6 m, en los supuestos que marca la norma)','Abrir giros sin dictamen de uso de suelo']},
+ 'HM':{t:'Habitacional mixto',q:'Vivienda que convive con comercios básicos y servicios vecinales de bajo impacto.',
+  r:'Densidad según la clave (aislada, mínima, baja o media: de 10 a 59 viv/ha). Máximo 2 niveles (6 m).',
+  si:['Vivienda','Comercios básicos y servicios vecinales de bajo impacto en el mismo predio','Equipamiento compatible'],
+  no:['Rebasar la densidad ni la altura máxima (2 niveles, 6 m)','Giros de mayor impacto sin dictamen de uso de suelo','Lotes menores al lote tipo de la densidad']},
+ 'HMM':{t:'Habitacional mixto medio',q:'Vivienda con comercios y servicios más intensos, que pueden convivir en el mismo predio.',
+  r:'Densidad según la clave. Máximo 2 niveles (6 m).',
+  si:['Vivienda','Comercios y servicios de intensidad media','Usos mezclados en el mismo predio'],
+  no:['Rebasar densidad y altura máxima','Giros no compatibles sin dictamen de uso de suelo']},
+ 'CS':{t:'Comercio y servicios',q:'Predominan el comercio y los servicios, de alcance local, municipal o regional según la densidad.',
+  r:'Puede integrar vivienda con la densidad de la clave. Máximo 2 niveles (6 m).',
+  si:['Comercio y servicios según la densidad de la zona','Integrar vivienda con la densidad correspondiente','Giros compatibles con dictamen de uso de suelo'],
+  no:['Giros prohibidos por la Tabla de Compatibilidad de Usos','Operar sin dictamen de uso de suelo ni licencia','Rebasar la altura máxima']},
+ 'E':{t:'Equipamiento',q:'Predios e instalaciones para servicios a la comunidad.',
+  r:'Escuelas, salud, deporte, abasto, cultura y servicios públicos.',
+  si:['Equipamiento educativo, de salud, deportivo, cultural y de abasto','Giros permitidos en equipamientos públicos de comercio (mercados municipales), conforme a la norma general 9'],
+  no:['Destinarlo a usos privados incompatibles sin el procedimiento de cambio correspondiente']},
+ 'ECO':{t:'Ecoturístico',q:'Proyectos de turismo de bajo impacto compatibles con la conservación.',
+  r:'Al menos 80% del predio libre de construcción · máximo 2 niveles.',
+  si:['Actividades y proyectos ecoturísticos de bajo impacto','Instalaciones ligeras que mantengan el 80% del predio libre'],
+  no:['Construir más del 20% de la superficie del predio','Más de 2 niveles','Desarrollos habitacionales (la densidad de vivienda no aplica en esta zona)']},
+ 'PCCA':{t:'Protección a cauces y cuerpos de agua',q:'Cauces y cuerpos de agua con sus riberas, zonas de influencia y zonas federales.',
+  r:'Zona no urbanizable.',
+  si:['Protección y restauración del cauce y su ribera','Intervenciones que autorice expresamente la autoridad del agua'],
+  no:['Construir u obtener licencia de construcción','Ocupar el cauce, las riberas o la zona federal','Descargar aguas residuales o rellenar']},
+ 'ZAM':{t:'Zona de amortiguamiento',q:'Protege las zonas núcleo de la Reserva de la Biosfera Sierra Gorda. Dentro de ella conviven tierras agrícolas (el valle de riego, en buena parte ejidales) y tierras forestales (el monte) — y las reglas no son las mismas para unas y otras.',
+  r:'Zona no urbanizable · 91% del territorio municipal · Versión de trabajo: el detalle por subzona del Programa de Manejo se integrará más adelante.',
+  si:['En tierras agrícolas: seguir cultivando — las actividades productivas que las comunidades ya realizan están permitidas por el Programa de Manejo','En parcelas ejidales: decidir sobre la tierra por la vía del régimen agrario (la asamblea ejidal)','En tierras forestales: aprovechamientos conforme al Programa de Manejo, con las autorizaciones que correspondan'],
+  no:['Urbanizar o lotificar para vivienda o venta de lotes: es suelo no urbanizable','Obtener licencia de construcción municipal','En el monte: desmontar o cambiar el uso del suelo forestal sin autorización de SEMARNAT','En ejido: lotificar parcelas al margen de la asamblea y del régimen agrario']},
+ 'ZN':{t:'Zona núcleo',q:'Los ecosistemas mejor conservados de la Reserva.',
+  r:'Zona no urbanizable · máxima protección.',
+  si:['Preservación de los ecosistemas','Investigación científica y educación ambiental'],
+  no:['Urbanizar o construir','Aprovechamientos extractivos','Cualquier obra ajena a la conservación']}
+};
+var ORDEN_S=['HR','HM','HMM','CS','E','ECO','PCCA','ZAM','ZN'];
+var chipsBox=document.getElementById('chipsZona');
+function seleccionaFamilia(f){
+  var z=SINO[f];if(!z)return;
+  document.querySelectorAll('.chip-z').forEach(function(c){c.classList.toggle('on',c.dataset.f===f)});
+  document.getElementById('znTit').textContent=z.t;
+  document.getElementById('znQue').textContent=z.q;
+  document.getElementById('znReg').textContent=z.r;
+  var si=document.getElementById('znSi'),no=document.getElementById('znNo');
+  si.innerHTML='';no.innerHTML='';
+  z.si.forEach(function(x){var li=document.createElement('li');li.textContent=x;si.appendChild(li)});
+  z.no.forEach(function(x){var li=document.createElement('li');li.textContent=x;no.appendChild(li)});
+}
+ORDEN_S.forEach(function(f){
+  if(!vistos[f]&&!SINO[f])return;
+  var b=document.createElement('button');
+  b.className='chip-z';b.dataset.f=f;
+  b.innerHTML='<span class="pt-c" style="background:'+(vistos[f]||'#ccc')+'"></span>'+(SINO[f]?SINO[f].t:f);
+  b.addEventListener('click',function(){seleccionaFamilia(f)});
+  chipsBox.appendChild(b);
+});
+seleccionaFamilia('HR');
+
 var marcador=null;
 document.getElementById('btnGps').addEventListener('click',function(){
   var msg=document.getElementById('gpsMsg');
